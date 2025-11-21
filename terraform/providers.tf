@@ -8,16 +8,18 @@ terraform {
     }
   }
 
-  # Terraform Cloud backend configuration
-  # To use this, set the organization and workspace names
-  # and authenticate with `terraform login`
-  backend "remote" {
-    organization = "your-organization"
-
-    workspaces {
-      name = "task-management-app"
-    }
+  # Local backend for development
+  backend "local" {
+    path = "terraform.tfstate"
   }
+
+  # For production, use Terraform Cloud:
+  # backend "remote" {
+  #   organization = "your-organization"
+  #   workspaces {
+  #     name = "task-management-app"
+  #   }
+  # }
 }
 
 provider "azurerm" {
